@@ -1,5 +1,7 @@
 import React from "react";
 
+
+
 const list = [
   {
     title: 'React',
@@ -24,24 +26,28 @@ const list = [
   }
 ]
 
+function List() {
+  return list.map((item) => {
+    return (
+      <div>
+        <ul>
+          <span>
+            <a href={item.url}>{item.title}</a>
+          </span>
+          <li key={item.objectId}>{item.author}</li>
+          <li key={item.objectId}>{item.points}</li>
+          <li key={item.objectId}>{item.author}</li>
+        </ul>
+      </div>
+    );
+  });
+}
+
 function App() {
   return (
     <div className="App">
       <h1>Hello Moto Mami</h1>
-      {
-        list.map((item) => {
-          return <div>
-            <ul>
-            <span>
-              <a href={item.url}>{item.title}</a>
-            </span>
-              <li key={item.objectId}>{item.author}</li>
-              <li key={item.objectId}>{item.points}</li>
-              <li key={item.objectId}>{item.author}</li>
-            </ul>
-          </div>
-        })
-      }
+      <List />
     </div>
   );
 }
