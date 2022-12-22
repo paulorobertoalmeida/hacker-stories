@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 const list = [
   {
     title: 'React',
@@ -26,6 +24,7 @@ const list = [
   }
 ]
 
+//leaf Component
 function List() {
   return list.map((item) => {
     return (
@@ -42,11 +41,17 @@ function List() {
     );
   });
 }
-
+// root Component
 function App() {
+  const handlerChange = event => {
+    console.log(event);
+  }
   return (
     <div className="App">
       <h1>Hello Moto Mami</h1>
+      <hr />
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" onChange={handlerChange} />
       <List />
     </div>
   );
