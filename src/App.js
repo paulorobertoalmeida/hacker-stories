@@ -16,6 +16,27 @@ props.list.map((item) => (
     
   ));
 
+const Search = props => {
+  const [searchTerm, setSearchTerm] = React.useState('');
+
+  function handlerTerm(event) {
+    setSearchTerm(event.target.value);
+  }
+  props.onSearch(event.target.value);
+  return (
+    <div>
+      <label htmlFor="search"> Search </label>
+      <input id="search" type="text" onChange={handlerTerm} />
+
+      <p>
+        Searching for <strong> {searchTerm} </strong>
+      </p>
+      
+    </div>
+  )
+}
+
+
 // root Component
 function App() {
   const stories = [
@@ -43,17 +64,22 @@ function App() {
   ]
   const [searchTerm, setSearchTerm] = React.useState('');
   
-  const handlerChange = e => {
+  const handleChange = e => {
     setSearchTerm(e.target.value);
+  }
+
+  const handleSearch = e => {
+    console.log(e.target.value);
   }
   return (
     <div className="App">
       <h1>Hello Moto Mami</h1>
+      <Search onSearch={handleSearch}/>
       <hr />
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={handlerChange} />
+      {/* <label htmlFor="search">Search: </label>
+       <input id="search" type="text" onChange={handleChange} /> 
       
-      <p> Searching for <strong>{searchTerm}</strong> </p>
+      <p> Searching for <strong>{searchTerm}</strong> </p> */}
       <List list={stories}/>
     </div>
   );
